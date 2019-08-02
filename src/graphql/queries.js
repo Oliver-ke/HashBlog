@@ -34,7 +34,6 @@ const TRENDING_QUERY = gql`
 			coverImage
 			author {
 				name
-				fake
 			}
 		}
 	}

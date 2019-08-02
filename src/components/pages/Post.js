@@ -16,8 +16,12 @@ const Post = ({ match }) => {
 				if (error) console.log(error);
 				return (
 					<div className="container">
-						<Link to="/" class="waves-effect waves-light btn purple darken-4">
-							<i class="material-icons left">keyboard_arrow_left</i>Back
+						<Link
+							to="/"
+							style={{ marginBottom: '5px' }}
+							className="waves-effect waves-light btn purple darken-4"
+						>
+							<i className="material-icons left">keyboard_arrow_left</i>Back
 						</Link>
 						<div className="row">
 							<Badges tags={tags} />

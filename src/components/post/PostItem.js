@@ -3,6 +3,9 @@ import Media from 'react-media';
 import { Link } from 'react-router-dom';
 
 const PostItem = ({ coverImage, title, author, changeLimit, cuid }) => {
+	if (coverImage.length === 0) {
+		coverImage = 'https://via.placeholder.com/300x100?text=No+Cover-Image';
+	}
 	return (
 		<Media query={{ maxWidth: 599 }}>
 			{(match) =>

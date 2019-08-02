@@ -4,9 +4,9 @@ const SearchBar = () => {
 	return (
 		<nav style={{ marginBottom: '30px' }} className="purple darken-4">
 			<div className="nav-wrapper">
-				<form>
+				<form onSubmit={(e) => e.preventDefault}>
 					<div className="input-field">
-						<input id="search" type="search" placeholder="Search Blogs.." />
+						<input id="search" type="search" placeholder="Search Blogs.. (Contribute !!)" />
 						<label className="label-icon" htmlFor="search">
 							<i className="material-icons">search</i>
 						</label>

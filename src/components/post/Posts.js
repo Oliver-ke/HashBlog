@@ -1,32 +1,27 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Query } from 'react-apollo';
-import getQuery from '../../graphql/util';
 import PostItem from './PostItem';
 import PreLoader from './../util/PreLoader';
 import debounce from 'lodash.debounce';
-import { TRENDING_QUERY } from '../../graphql/queries';
 
-const Posts = ({ searchType }) => {
+const Posts = ({ query }) => {
 	const [ limit, setLimit ] = useState(10);
 	const [ privType, setPrivType ] = useState('');
 	const [ initialLoad, setInitialLoad ] = useState(true);
-	const [ postQuery, setPostQuery ] = useState(TRENDING_QUERY);
 	const changeLimit = (newLimit) => {
 		setLimit(newLimit);
 	};
 	useEffect(
 		() => {
-			const newQuery = getQuery(searchType);
-			setPostQuery(newQuery);
-			if (privType !== searchType) {
-				setPrivType(searchType);
+			if (privType !== query) {
+				setPrivType(query);
 				setInitialLoad(false);
-			} else if (privType === searchType) {
+			} else if (privType === query) {
 				setInitialLoad(true);
 			}
 		},
 		// eslint-disable-next-line
-		[ searchType ]
+		[ query ]
 	);
 	window.onscroll = debounce(() => {
 		if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
@@ -36,8 +31,8 @@ const Posts = ({ searchType }) => {
 
 	return (
 		<Fragment>
-			<Query query={postQuery} variables={{ limit }}>
-				{({ loading, error, data }) => {
+			<Query query={query} variables={{ limit }}>
+				{({ loading, error, data, ...rest }) => {
 					if (loading && !initialLoad && !Object.values(data).length > 0) {
 						return <PreLoader />;
 					}

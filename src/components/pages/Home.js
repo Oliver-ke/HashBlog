@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import FeatureCard from './../util/FeatureCard';
+import { RECENT_QUERY, FEEDS_QUERY, TRENDING_QUERY, FEATURED_QUERY } from '../../graphql/queries';
 
 import Posts from '../post/Posts';
 const Home = () => {
@@ -19,7 +20,10 @@ const Home = () => {
 				<FeatureCard changeSearchType={changeSearchType} content={'Recent Stories'} icon={'brightness_4'} />
 				<FeatureCard changeSearchType={changeSearchType} content={'Trending Stories'} icon={'brightness_6'} />
 			</div>
-			<Posts searchType={searchType} />
+			{searchType === 'Stories Feed' && <Posts query={FEEDS_QUERY} />}
+			{searchType === 'Featured Stories' && <Posts query={FEATURED_QUERY} />}
+			{searchType === 'Recent Stories' && <Posts query={RECENT_QUERY} />}
+			{searchType === 'Trending Stories' && <Posts query={TRENDING_QUERY} />}
 		</Fragment>
 	);
 };

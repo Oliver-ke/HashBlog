@@ -11,7 +11,7 @@ const AuthorProfile = ({ author, title, dateAdded }) => {
 						<Fragment>
 							<h4>{title}</h4>
 							<h6>{moment(dateAdded).format('MMMM Do YYYY, h:mm:ss a')}</h6>
-							<div style={{ height: '100px' }} className="card-panel grey lighten-5 z-depth-1">
+							<div style={{ height: '150px' }} className="card-panel grey lighten-5 z-depth-1">
 								<div className="row valign-wrapper">
 									<div className="col s2">
 										<img src={author.photo} alt="" className="circle responsive-img" />
