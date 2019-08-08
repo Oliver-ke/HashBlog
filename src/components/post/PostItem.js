@@ -2,7 +2,7 @@ import React from 'react';
 import Media from 'react-media';
 import { Link } from 'react-router-dom';
 
-const PostItem = ({ coverImage, title, author, changeLimit, cuid }) => {
+const PostItem = ({ coverImage, title, author, cuid }) => {
 	if (coverImage.length === 0) {
 		coverImage = 'https://via.placeholder.com/300x100?text=No+Cover-Image';
 	}

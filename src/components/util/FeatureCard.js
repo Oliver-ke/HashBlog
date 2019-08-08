@@ -1,9 +1,9 @@
 import React from 'react';
 import Media from 'react-media';
-const FeatureCard = ({ content, icon, changeSearchType }) => {
+const FeatureCard = ({ content, icon, changeSearchType, type }) => {
 	return (
 		<div className="col s6 m3">
-			<a href="#!" onClick={() => changeSearchType(content)}>
+			<a href="#!" onClick={() => changeSearchType(type)}>
 				<div style={{ borderRadius: '5px', background: '#f4f4f4' }} className="card hoverable">
 					<div style={{ padding: '5px' }} className="card-content center-align">
 						<i className="material-icons purple-text darken-5">{icon}</i>

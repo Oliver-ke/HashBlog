@@ -4,38 +4,37 @@ import PostItem from './PostItem';
 import PreLoader from './../util/PreLoader';
 import debounce from 'lodash.debounce';
 
-const Posts = ({ query }) => {
-	const [ limit, setLimit ] = useState(10);
+const Posts = ({ type, query }) => {
+	const [ page, setPage ] = useState(0);
 	const [ privType, setPrivType ] = useState('');
 	const [ initialLoad, setInitialLoad ] = useState(true);
-	const changeLimit = (newLimit) => {
-		setLimit(newLimit);
-	};
+
 	useEffect(
 		() => {
-			if (privType !== query) {
-				setPrivType(query);
+			if (privType !== type) {
+				setPrivType(type);
 				setInitialLoad(false);
-			} else if (privType === query) {
+			} else if (privType === type) {
 				setInitialLoad(true);
 			}
 		},
 		// eslint-disable-next-line
-		[ query ]
+		[ type ]
 	);
 	window.onscroll = debounce(() => {
 		if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-			setLimit(limit + 5);
+			setPage(page + 1);
 		}
 	}, 100);
 
 	return (
 		<Fragment>
-			<Query query={query} variables={{ limit }}>
-				{({ loading, error, data, ...rest }) => {
+			<Query query={query} variables={{ page, type }}>
+				{({ loading, error, data }) => {
 					if (loading && !initialLoad && !Object.values(data).length > 0) {
 						return <PreLoader />;
 					}
+					if (error) console.log(error);
 					const { featuredStories, recentStories, storiesFeed, trendingStories } = data;
 					return (
 						<div className="row">
@@ -46,7 +45,6 @@ const Posts = ({ query }) => {
 											author={post.author}
 											title={post.title}
 											coverImage={post.coverImage}
-											changeLimit={changeLimit}
 											cuid={post.cuid}
 										/>
 									</div>
@@ -58,7 +56,6 @@ const Posts = ({ query }) => {
 											author={post.author}
 											title={post.title}
 											coverImage={post.coverImage}
-											changeLimit={changeLimit}
 											cuid={post.cuid}
 										/>
 									</div>
@@ -70,7 +67,6 @@ const Posts = ({ query }) => {
 											author={post.author}
 											title={post.title}
 											coverImage={post.coverImage}
-											changeLimit={changeLimit}
 											cuid={post.cuid}
 										/>
 									</div>
@@ -82,7 +78,6 @@ const Posts = ({ query }) => {
 											author={post.author}
 											title={post.title}
 											coverImage={post.coverImage}
-											changeLimit={changeLimit}
 											cuid={post.cuid}
 										/>
 									</div>
