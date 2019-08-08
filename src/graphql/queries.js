@@ -1,21 +1,8 @@
 import gql from 'graphql-tag';
 
-const FEATURED_QUERY = gql`
-	query feauredStories($limit: Int!) {
-		featuredStories(limit: $limit) {
-			title
-			cuid
-			coverImage
-			author {
-				name
-				photo
-			}
-		}
-	}
-`;
-const RECENT_QUERY = gql`
-	query recentStories($limit: Int!) {
-		recentStories(limit: $limit) {
+const FEEDS_QUERY = gql`
+	query storiesFeed($type: FeedType!, $page: Int!) {
+		storiesFeed(type: $type, page: $page) {
 			title
 			cuid
 			coverImage
@@ -26,21 +13,9 @@ const RECENT_QUERY = gql`
 	}
 `;
 
-const TRENDING_QUERY = gql`
-	query trendingStories($limit: Int!) {
-		trendingStories(limit: $limit) {
-			title
-			cuid
-			coverImage
-			author {
-				name
-			}
-		}
-	}
-`;
-const FEEDS_QUERY = gql`
-	query storiesFeed($limit: Int!) {
-		storiesFeed(limit: $limit) {
+const DISCUSS_QUERY = gql`
+	query discussionsFeed($type: FeedType!, $page: Int!) {
+		storiesFeed(type: $type, page: $page) {
 			title
 			cuid
 			coverImage
@@ -71,4 +46,4 @@ const POST_QUERY = gql`
 	}
 `;
 
-export { FEEDS_QUERY, TRENDING_QUERY, RECENT_QUERY, FEATURED_QUERY, POST_QUERY };
+export { FEEDS_QUERY, POST_QUERY, DISCUSS_QUERY };
