@@ -8,7 +8,7 @@
     "lodash.debounce": "^4.0.8",
     "markdown-react-js": "^1.0.2",
     "materialize-css": "^1.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.8.6",
     "react-apollo": "^2.5.8",
     "react-dom": "^16.8.6",
